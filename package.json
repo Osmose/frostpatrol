@@ -6,14 +6,19 @@
   "author": "Michael Kelly",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon app.js"
+    "watch": "watchify public/js/bootstrap.js -o public/js/frostpatrol.js -v",
+    "start": "npm run watch & nodemon app.js"
   },
   "dependencies": {
     "express": "~4.1.1",
+    "jquery": "~2.1.1",
     "nunjucks": "~1.0.5",
+    "pixi.js": "git://github.com/GoodBoyDigital/pixi.js.git#v1.5.2",
     "ws": "~0.4.31"
   },
   "devDependencies": {
-    "nodemon": "~1.0.17"
+    "nodemon": "~1.0.17",
+    "watchify": "~0.8.3",
+    "browserify": "~3.46.0"
   }
 }
