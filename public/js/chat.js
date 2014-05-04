@@ -13,12 +13,12 @@ function start() {
         e.preventDefault();
         var message = $chatMessage.val();
         $chatMessage.val('');
-        client.sendChatMessage(message);
+        client.sendMessage({type: 'chat', text: message});
     });
 
     client.registerHandler('chat', function(data) {
         var $newMsg = $('<p></p>');
-        $newMsg.text(data.text);
+        $newMsg.text(data.nickname + ': ' + data.text);
         $chatLog.append($newMsg);
     });
 }

@@ -6,7 +6,9 @@ var $ = require('jquery');
 var socket;
 var canSendMessages = false;
 var messageCache = [];
-var handlers = {};
+var handlers = {core: coreMessageHandler};
+
+var nickname = null;
 
 function connect(websocketUrl) {
     socket = new WebSocket(websocketUrl);
@@ -38,17 +40,15 @@ function sendMessage(message) {
     }
 }
 
-function sendChatMessage(text) {
-    sendMessage({
-        type: 'chat',
-        text: text
-    });
+function coreMessageHandler(message) {
+    if (message.command == 'nick') {
+        nickname = message.nickname;
+    }
 }
 
 
 module.exports = {
     connect: connect,
     sendMessage: sendMessage,
-    sendChatMessage: sendChatMessage,
     registerHandler: registerHandler,
 };
